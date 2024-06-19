@@ -2,7 +2,7 @@ $(document).ready(function () {
   eel.expose(DisplayMessage);
   function DisplayMessage(message) {
     if (message.length >= 50) {
-      message = message.slice(0, 1000) + "..."
+      message = message.slice(0, 600) + "..."
     }
     $(".siri-message li:first").text(message);
     $(".siri-message").textillate("start");

@@ -1,7 +1,7 @@
 from playsound import playsound
 import eel
 import os
-from engine.config import ACCESS_KEY, ASSISTANT_NAME
+from engine.config import ACCESS_KEY
 from engine.command import speak
 import pywhatkit as kit
 from engine.db import cursor
@@ -11,7 +11,9 @@ import time
 import pvporcupine
 import struct
 import pyaudio
-from hugchat import hugchat
+import engine.config
+
+
 
 @eel.expose
 def playAssistantSound():
@@ -19,7 +21,6 @@ def playAssistantSound():
     playsound(music_dir)
 
 def openCommand(query):
-    query = query.replace(ASSISTANT_NAME, "")
     app_name = extract_app_name(query)
     if app_name != "":
         try:
@@ -94,13 +95,15 @@ def hotword():
         if paud is not None:
             paud.terminate()
 
+
+# Previous Chatbot Implementation through HugChat
 def chatBot(query):
     eel.DisplayLoader(False)
     user_input = query.lower()
-    chatbot = hugchat.ChatBot(cookie_path="engine\cookies.json")
-    id = chatbot.new_conversation()
-    chatbot.change_conversation(id)
-    response = chatbot.chat(user_input)
-    print(response)
+    response = engine.config.global_hugbot.speak_to_hug(user_input)
     speak(response)
     return response
+
+    # response = speak_to_chatBot(query) for Gemini
+    
+    

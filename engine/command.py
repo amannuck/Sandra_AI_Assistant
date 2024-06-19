@@ -3,6 +3,7 @@ import pyttsx3
 import speech_recognition as sr
 from speech_recognition.recognizers import google
 import eel
+from engine.config import ASSISTANT_NAME
 
 @eel.expose
 def speak(text):
@@ -42,6 +43,7 @@ def takecommand():
         query = r.recognize_google(audio)
         print(f'user said: {query}')
         eel.DisplayMessage(query)
+        time.sleep(2)
         
     except Exception as e:
         return "Oops, I didn't quite get that."
@@ -57,6 +59,9 @@ def allCommands(message=1):
     else:
         query = message
         eel.senderText(query)
+    
+    query = query.replace(ASSISTANT_NAME, "")
+
 
     try:
         if "open" in query:
@@ -69,8 +74,8 @@ def allCommands(message=1):
         else:
             from engine.features import chatBot
             chatBot(query)
-    except:
-        print("Error")
+    except Exception as e:
+        print(e)
         
     eel.ShowHood()
 

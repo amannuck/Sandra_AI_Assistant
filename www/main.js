@@ -1,3 +1,6 @@
+// window.addEventListener('unload', function (event) {
+//   eel.stop_speak();
+// });
 
 $(document).ready(function () {
 
@@ -43,6 +46,7 @@ $(document).ready(function () {
     $("#Siri-Wave").attr("hidden", false);
     eel.allCommands();
   });
+  
 
   function doc_keyUp(e) {
     // this would test for whichever key is 40 (down arrow) and the ctrl key at the same time
@@ -55,8 +59,18 @@ $(document).ready(function () {
     }
   }
 
+  // document.addEventListener("keyup", doc_keyUp, false);
 
-  document.addEventListener("keyup", doc_keyUp, false);
+  // function stop_yap(e) {
+  //   if (e.key === 'k' && e.metaKey) {
+  //     eel.stop_speak();
+  //     $("#Oval").attr("hidden", false);
+  //     $("#Siri-Wave").attr("hidden", true);
+  //   }
+  // }
+
+
+  // document.addEventListener("keyup", stop_yap, false)
 
   function PlayAssistant(message) {
     if (message != "") {

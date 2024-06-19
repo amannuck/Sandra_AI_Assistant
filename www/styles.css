@@ -164,7 +164,7 @@ body {
   padding: 8px;
   border: 2px solid cyan;
   border-radius: 0px 15px 15px 20px;
-  width: auto;
+  width: 30vw;
   color: white;
   background-color: #0dcaf014;
 }
@@ -173,11 +173,13 @@ body {
   padding: 8px;
   border: 1px solid #0045ff;
   border-radius: 15px 15px 0px 20px;
-  width: auto;
+  width: 30vw;
   color: white;
   background-color: #0045ff;
 }
-.width-size {
-  max-width: 80%;
-  width: auto;
+
+#stop-btn {
+  background-color: #0dcaf014;
+  border: 1px solid white;
+  border-radius: 15px;
 }
