@@ -31,7 +31,6 @@
 <body>
   <div class="container">
 
-
     <section id="Oval" class="mb-4">
       <div class="row">
         <div class="col-md-1"></div>
@@ -75,6 +74,9 @@
             <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
               <div class="overflow-none">
                 <p class="text-start text-light mb-4 siri-message">A pleasure to assist you.</p>
+                <div class="spinner-border text-light loader" role="status" hidden>
+                </div>
+                <p class="loader-message text-light" hidden>Sandra thinking...</p>
                 <div id="siri-container"></div>
               </div>
 
@@ -91,7 +93,6 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div id="chat-canvas-body" class="offcanvas-body">
-        <!-- Chatting code here -->
 
       </div>
     </div>

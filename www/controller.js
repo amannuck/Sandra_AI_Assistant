@@ -1,8 +1,18 @@
 $(document).ready(function () {
   eel.expose(DisplayMessage);
   function DisplayMessage(message) {
+    if (message.length >= 50) {
+      message = message.slice(0, 1000) + "..."
+    }
     $(".siri-message li:first").text(message);
     $(".siri-message").textillate("start");
+  }
+
+  eel.expose(DisplayLoader);
+  function DisplayLoader(value) {
+    $(".siri-message").attr("hidden", !value)
+    $(".loader").attr("hidden", value);
+    $(".loader-message").attr("hidden", value);
   }
 
   eel.expose(ShowHood);

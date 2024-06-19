@@ -1,7 +1,7 @@
 from playsound import playsound
 import eel
 import os
-from engine.config import ACCESS_KEY
+from engine.config import ACCESS_KEY, ASSISTANT_NAME
 from engine.command import speak
 import pywhatkit as kit
 from engine.db import cursor
@@ -19,9 +19,9 @@ def playAssistantSound():
     playsound(music_dir)
 
 def openCommand(query):
+    query = query.replace(ASSISTANT_NAME, "")
     app_name = extract_app_name(query)
     if app_name != "":
-
         try:
             cursor.execute(
                 'SELECT path FROM sys_command WHERE name IN (?)', (app_name,))
@@ -95,11 +95,12 @@ def hotword():
             paud.terminate()
 
 def chatBot(query):
+    eel.DisplayLoader(False)
     user_input = query.lower()
     chatbot = hugchat.ChatBot(cookie_path="engine\cookies.json")
     id = chatbot.new_conversation()
     chatbot.change_conversation(id)
-    response =  chatbot.chat(user_input)
+    response = chatbot.chat(user_input)
     print(response)
     speak(response)
     return response

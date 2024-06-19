@@ -1,6 +1,5 @@
 import multiprocessing
 
-
 def startSandra():
     print("Process 1 is running.")
     from main import start

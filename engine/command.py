@@ -1,8 +1,8 @@
+import time
 import pyttsx3
 import speech_recognition as sr
 from speech_recognition.recognizers import google
 import eel
-import time
 
 @eel.expose
 def speak(text):
@@ -14,15 +14,17 @@ def speak(text):
     engine.setProperty('voice', voices[1].id)
     
     #Rate
-    engine.setProperty('rate', 160) 
+    engine.setProperty('rate', 170) 
     
     #Volume
     engine.setProperty('volume', 1.0) 
+    eel.DisplayLoader(True)
     eel.DisplayMessage(text)
     engine.say(text)
     eel.receiverText(text)
     engine.runAndWait()
-
+    
+    
 @eel.expose
 def takecommand():
     r = sr.Recognizer()
@@ -30,6 +32,7 @@ def takecommand():
     with sr.Microphone() as source:
         eel.DisplayMessage('Listening...')
         # r.pause_threshold = 1
+        r.energy_threshold = 4000
         r.adjust_for_ambient_noise(source, duration=0.2)
         
         audio = r.listen(source, 10, 6)
@@ -39,7 +42,7 @@ def takecommand():
         query = r.recognize_google(audio)
         print(f'user said: {query}')
         eel.DisplayMessage(query)
-        speak(query)
+        
     except Exception as e:
         return "Oops, I didn't quite get that."
     

@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
 
   $(".text").textillate({
@@ -53,6 +54,7 @@ $(document).ready(function () {
       eel.allCommands()();
     }
   }
+
 
   document.addEventListener("keyup", doc_keyUp, false);
 
